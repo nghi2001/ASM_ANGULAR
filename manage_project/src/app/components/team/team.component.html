@@ -1,0 +1,62 @@
+
+<!-- <ul class="list-group">
+    <li class="list-group-item" *ngFor="let employe of listEmploye">
+        <div class="col-1">
+            <img src="{{employe.image}}" alt="" style="width: 100%;">
+        </div>
+        <div class="">
+            <h5>{{employe.lastname+' '+employe.firstname}}</h5>
+        </div>
+    </li>
+  </ul> -->
+
+  <div class="main col-4">
+    
+    <div class="img__add" data-bs-toggle="modal" data-bs-target="#addEm">
+        <i class="bi bi-plus-circle-dotted"></i>
+    </div>
+    <div class="img" *ngFor="let employe of listEmploye">
+        <img src="{{employe.image}}" alt="">
+        <div class="info">
+            <p>Id: {{employe._id}}</p>
+            <p> <span>Ten :</span> {{employe.firstname + ' '+ employe.lastname}}</p>
+            <p>Ngày sinh: {{employe.birthday}}</p>
+            <p>Khu Vực: {{employe.khuvuc}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addEm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Employe To Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="text" (keyup)="find($event)" class="form-control">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let employe of searchEmploye">
+                    <div class="col-1">
+                        <img src="{{employe.image}}" alt="" style="width: 100%;">
+                    </div>
+                    <div class="">
+                        <p>{{employe.lastname+' '+employe.firstname}}</p>
+                    </div>
+                    <div class="col-1">
+                      <button class="btn btn-primary" (click)="add(employe)">
+                        Add
+                      </button>
+                    </div>
+                </li>
+              </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,81 @@
+<div class="container py-4">
+    <div class="row bg-white justify-content-between p-2">
+        <div class="col-6">
+            <h2>{{project.name}}</h2>
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-warning" *ngIf="project.state">
+                In Process
+            </button>
+            <button type="button" class="btn btn-success" *ngIf="!project.state">
+                Done
+            </button>
+        </div>
+        <div class="col-3">
+
+                <app-updateproject ></app-updateproject>
+        </div>
+    <div class="col-12 justify-content-between">
+        <div class="row">
+        <div class="col-4 mt-4 mb-4">
+            <div class="startAt">
+                Start At: {{project.startAt | date:'Y/M/dd'}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-4 mt-4 text-center" *ngIf="project">
+                <app-teams [listEmploye]="project.teams"></app-teams>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-6 mb-4 mt-4 text-center" *ngIf="project">
+            <app-teams [listEmploye]="project.teams"></app-teams>
+        </div>
+    </div> -->
+    </div>
+
+    <div class="row bg-white mt-4 justify-content-between">
+        <div class="col-6">
+            <h2>List Task</h2>
+        </div>
+        <div class="col-2">
+            <app-create-task [idProject]="id" (newItemEvent)="addItem($event)"></app-create-task>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Employe</th>
+                    <th scope="col">Staus</th>
+                    <th scope="col">Delete/Update</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let task of listTask">
+                    <!-- {{task.tenTask}} -->
+                    <th scope="row">{{task._id}}</th>
+                    <td>{{task.tenTask}}</td>
+                    <td>{{task.nhanvienID}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" *ngIf="task.status === 0">
+                            In Process
+                        </button>
+                        
+                        <button type="button" class="btn btn-success" *ngIf="task.status === 1">
+                            Completed
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="deleteTask(task._id)">Delete</button>
+                        <button type="button" class="btn btn-primary">Update</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.btn-warning{
+    background-color: #ffdf9c;
+    font-weight: 500;
+}
+.startAt{
+    background-color: #f2f4f9;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn-primary{
+    background-color: #5f45ff !important;
+}

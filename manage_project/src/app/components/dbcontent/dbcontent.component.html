@@ -1,0 +1,77 @@
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <div class="row align-items-center justify-content-between">
+                <div class="col row">
+                  <div class="col-1 rec"></div>
+                  <div class="col-2">
+                      List Project
+                  </div>
+                </div>
+                <div class="col-2">
+                  <app-create-project (newProjectEvent)="addProject($event)"></app-create-project>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <table class="table">
+            <thead>
+              <tr class="">
+                <th scope="col">id</th>
+                <th scope="col" class="text-center mota">Project Name</th>
+                <th scope="col">Start At</th>
+                <th scope="col">Leader</th>
+                <th scope="col">Members</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Delete/Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="" *ngFor="let pro of projects; let i = index">
+                <th scope="col">
+                  {{i+1}}
+                </th>
+                <td>
+                    {{pro._id}}
+                </td>
+                <td>
+                    {{pro.startAt}}
+                </td>
+                <td>
+                    {{pro.leader}}
+                </td>
+                <td>
+                    {{pro.teams}}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-warning" [routerLink]="['project',pro._id]">
+                    More Detail</button>
+                </td>
+                <td>
+                  <button class="btn btn-danger" (click)="deleteProject(pro._id)">Delete</button>
+                </td>
+              </tr>
+              <!-- <tr class="" *ngFor="let project of projects">
+                
+                <th scope="col"></th>
+                <th scope="col"><p class="text-center mota">{{project.name}} </p></th>
+                <th scope="col">{{ project.startAt}}</th>
+                <th scope="col">{{project.leader}}</th>
+                
+                <th scope="col">{{project.teams}}</th>
+                <th scope="col">
+                    <button type="button" class="btn btn-warning" [routerLink]="['project',project._id]">
+                        More Detail</button>
+                </th>
+                <th scope="col">
+                  <button class="btn btn-danger" (click)="deleteProject(project._id)">Delete</button>
+                
+                </th>
+                <th scope="col" data-id="{{project._id}}">
+                  <app-updateproject [projectID]="project._id"></app-updateproject></th>
+              </tr> -->
+            </tbody>
+          </table>
+    </div>
+</div>
