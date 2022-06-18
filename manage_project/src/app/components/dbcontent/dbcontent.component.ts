@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Employes } from 'src/app/interfaces/employes';
 import { Project } from 'src/app/interfaces/project';
 import { ProjectService } from 'src/app/Services/project.service';
 
@@ -10,6 +11,7 @@ import { ProjectService } from 'src/app/Services/project.service';
 })
 export class DbcontentComponent implements OnInit {
   projects?: Project[];
+  teams:Employes[] = [];
   a:any[] = [1,2,3,5,5]
   constructor(
     private projectService: ProjectService,
@@ -18,28 +20,38 @@ export class DbcontentComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      console.log(params['tukhoa']);
+      // console.log(params['tukhoa']);
       if( params['tukhoa'] == undefined) {
         this.getAllProject()
         console.log(this.projects);
       } else {
         this.projectService.getProjectByName(String(params['tukhoa']))
-          .subscribe(data => {
-            console.log(data);
+          .subscribe((data:any) => {
+            if(data.data){
+              return
+            }
             
             this.projects = data as Project[]
-
+            console.log(data);
+            
           })
       }
     })
   }
-
+  asEmploye(val:Employes|string):Employes {
+    return (val as Employes)
+  }
   addProject(Project: Project) {
     this.projectService.addProject(Project)
-      .subscribe(listProject => {
+      .subscribe((listProject:any) => {
         console.log(listProject);
         if(this.projects)
         this.projects.push(listProject);
+      },err => {
+        if(err.status = 401) {
+          localStorage.removeItem('state');
+          alert('token het han')
+        }
       })
     console.log(Project);
     
@@ -47,9 +59,14 @@ export class DbcontentComponent implements OnInit {
   getAllProject() {
     this.projectService.getAll()
         .subscribe((data:any) => {
-          this.projects = data.data
           console.log(data);
           
+          this.projects = data.data
+        },err => {
+          if(err.status = 401) {
+            localStorage.removeItem('state');
+            alert('token het han')
+          }
         })
   }
 
@@ -63,6 +80,11 @@ export class DbcontentComponent implements OnInit {
                       
                       if(this.projects)
                       this.projects = this.projects.filter(project => project._id != id)
+                    },err => {
+                      if(err.status = 401) {
+                        localStorage.removeItem('state');
+                        alert('token het han')
+                      }
                     })
     }
   }

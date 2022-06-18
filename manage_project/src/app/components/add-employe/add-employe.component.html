@@ -1,0 +1,19 @@
+<input type="text" class="form-control" (keyup)="find($event)">
+
+<div class="show" >
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let employe of searchEmploye">
+            <div class="col-1">
+                <img src="http://localhost:3000/{{employe.image}}" alt="" style="width: 100%;">
+            </div>
+            <div class="col-1">
+                <p>{{employe.lastname+' '+employe.firstname}}</p>
+            </div>
+            <div class="col-1">
+              <button class="btn btn-primary" (click)="newLeader(employe)">
+                Add
+              </button>
+            </div>
+        </li>
+      </ul>
+</div>

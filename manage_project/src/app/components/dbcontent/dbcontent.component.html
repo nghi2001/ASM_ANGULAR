@@ -33,16 +33,18 @@
                   {{i+1}}
                 </th>
                 <td>
-                    {{pro._id}}
+                    {{pro.name}}
                 </td>
                 <td>
                     {{pro.startAt}}
                 </td>
                 <td>
-                    {{pro.leader}}
+                    {{asEmploye(pro.leader).firstname + " "+asEmploye(pro.leader).lastname}}
                 </td>
-                <td>
-                    {{pro.teams}}
+                <td *ngIf="pro.teams">
+                  <div *ngFor="let em of pro.teams">
+                    {{ asEmploye(em).firstname }}
+                  </div>
                 </td>
                 <td>
                   <button type="button" class="btn btn-warning" [routerLink]="['project',pro._id]">

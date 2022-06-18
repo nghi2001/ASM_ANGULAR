@@ -19,8 +19,8 @@ export class Task{
     priority: number
     @Prop({type: mongoose.Types.ObjectId, ref:Employe.name})
     nhanvienID: Employe;
-    @Prop({default: 0})
-    status: number
+    @Prop({default: false})
+    status: boolean
 
 }
 

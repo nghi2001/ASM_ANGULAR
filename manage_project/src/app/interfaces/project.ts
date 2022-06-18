@@ -5,7 +5,7 @@ export interface Project {
     name: string;
     startAt: string;
     budget: number;
-    leader: string|Employes;
-    teams: string[]|Employes[];
+    leader: Employes|string;
+    teams: string[]|Employes[]|any;
     state: boolean
 }

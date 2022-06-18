@@ -35,9 +35,11 @@ export class TaskService {
             throw error
         }
     }
-
+    updateStatus(id, status) {
+        return this.TaskModel.updateOne({_id: id,status})
+    }
     async update( id, task: Task) {
-        let taskFind: Task = await this.TaskModel.findOneAndUpdate({id:id},{
+        let taskFind: Task = await this.TaskModel.findOneAndUpdate({_id:id},{
             task
         });
         return taskFind;

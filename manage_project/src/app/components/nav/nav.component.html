@@ -6,11 +6,15 @@
         </div>
         <ul class="list-group">
             <li class="list-group-item"><i class="bi bi-list-task"></i><div>Dashboard</div></li>
-            <li class="list-group-item active"><i class="bi bi-folder-fill"></i><div>Project</div></li>
-            <li class="list-group-item"><i class="bi bi-person-fill"></i><div>Staffs</div></li>
-            <li class="list-group-item"><i class="bi bi-calendar"></i><div>Caledar</div></li>
-            <li class="list-group-item"><i class="bi bi-bell-fill"></i><div>Notification</div></li>
-            <li class="list-group-item"><i class="bi bi-gear-fill"></i><div>Teams</div></li>
+            <li class="list-group-item" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+            ><i class="bi bi-folder-fill"></i><div>Project</div></li>
+            <li class="list-group-item" routerLink="/employe" routerLinkActive="active"><i class="bi bi-person-fill"></i><div>Staffs</div></li>
+            <li class="list-group-item"
+                routerLink="/create/employe" routerLinkActive="active"
+            ><i class="bi bi-calendar"></i><div>Register</div></li>
+            <li class="list-group-item" routerLink="/login" routerLinkActive="active"><i class="bi bi-bell-fill"></i><div>Login</div></li>
+            <li class="list-group-item" (click)="logout()"><i class="bi bi-gear-fill"></i><div>Logout</div></li>
         </ul>
     </div>
 </main>

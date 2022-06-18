@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import mongoose from 'mongoose';
 import { identity } from 'rxjs';
 import { ProjectService } from './project.service';
 import { Project } from './schema/project.schema';
@@ -14,9 +15,21 @@ export class ProjectController {
 
         return {data: projects};
     }
-
+    @Get("/byname/:name")
+    async getByName(@Param("name") name) {
+        if(name == null || name == undefined) {
+            return []
+        }
+        let projects = await this.ProjectService.getByName(name);
+        console.log(projects);
+        
+        return projects;
+    }
     @Get(":id")
     async findOne(@Param("id") id) {
+        if(id == null || !mongoose.Types.ObjectId.isValid(id)) {
+            return []
+        }
         let Project = await this.ProjectService.findOne(id);
         
         return {data: Project};
@@ -25,7 +38,10 @@ export class ProjectController {
 
     @Post()
     async create(@Body() body: Project) {
-        return this.ProjectService.create(body);
+        let project:any = await this.ProjectService.create(body);
+        console.log(project);
+        
+        return project
     }
 
     @Delete(":id")
@@ -34,7 +50,12 @@ export class ProjectController {
     }
     @Put('/addEmploye')
     async addEmploye(@Body("id") id,@Body("_id") _id){
+        console.log(id,_id);
+        console.log(2);
+        
         let result = await this.ProjectService.addEmploye(_id,id)
+        console.log(result);
+        
         return result
     }
 

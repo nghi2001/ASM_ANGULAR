@@ -25,7 +25,10 @@ export class EmployeService {
         newEmploye.lastname = employe.lastname;
         newEmploye.birthday = employe.birthday;
         newEmploye.sex = employe.sex;
+        newEmploye.pass = employe.pass;
+        newEmploye.email = employe.email;
         newEmploye.khuvuc = employe.khuvuc;
+        newEmploye.image = employe.image
         try {
             return newEmploye.save();
         } catch (error) {

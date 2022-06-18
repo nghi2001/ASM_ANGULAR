@@ -44,6 +44,11 @@ export class CreateTaskComponent implements OnInit {
                     .subscribe(value => {
                       console.log(value);
                       this.newItemEvent.emit(value);
+                    },err => {
+                      if(err.status = 401) {
+                        localStorage.removeItem('state');
+                        alert('token het han')
+                      }
                     })
   }
 }

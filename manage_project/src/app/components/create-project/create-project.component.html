@@ -17,19 +17,29 @@
               <div class="form">
               <div class="mb-3">
                   <label for="" class="form-label">Project Name</label>
-                  <input type="text" placeholder="Project Name" name="name" ngModel class="form-control">
-              </div>
+                  <input type="text" placeholder="Project Name" name="name" required ngModel class="form-control">
+                </div>
             <div class="mb-3">
                 <label for="" class="form-label">Budget</label>
                 <input type="number" name="budget" ngModel placeholder="Project Name" class="form-control">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Leader</label>
-              <input type="text" name="leader" ngModel placeholder="Leader" class="form-control">
+              <input type="hidden" name="leader" [ngModel]="Leader?._id" placeholder="Leader" class="form-control">
+              <div *ngIf="Leader">
+                {{Leader.firstname}}
+              </div>
+              <app-add-employe (newLead)="chooseLeader($event)"></app-add-employe>
           </div>
             <div class="mb-3">
               <label for="" class="form-label">Team</label>
-              <input type="text" name="teams" ngModel placeholder="Teams" class="form-control">
+              <app-add-employe (newLead)="addTeam($event)"></app-add-employe>
+              <div class="listem">
+                <div class="emp mt-1" *ngFor="let emp of Emplye">
+                  <p>X</p>
+                  {{emp.firstname}}
+                </div>
+              </div>
           </div>
         </div>
         <div class="modal-footer">

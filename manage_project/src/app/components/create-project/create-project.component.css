@@ -2,3 +2,28 @@
 .btn-primary{
     background-color: #5f45ff !important;
 }
+
+.listem{
+    display: flex;
+    gap: 5px;
+}
+.emp{
+    width: 100px;
+    position: relative;
+    height: 30px;
+    background-color: #aa9ff0;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+.emp p{
+    font-weight: 600;
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+    right: 2px;
+
+}

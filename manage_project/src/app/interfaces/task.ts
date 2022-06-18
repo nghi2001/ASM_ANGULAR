@@ -5,5 +5,5 @@ export interface Task {
     duAnID:string;
     nhanvienID:string;
     priority:number;
-    status:number;
+    status:boolean;
 }

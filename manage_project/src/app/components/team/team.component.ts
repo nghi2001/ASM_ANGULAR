@@ -33,6 +33,7 @@ export class TeamComponent implements OnInit {
 
   add(employe:Employes) {
     this.EmployeService.updateEmployeProject(employe._id, this.idProject).subscribe(value => {
+      console.log(value);
       
     })
     

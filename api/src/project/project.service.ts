@@ -12,11 +12,17 @@ export class ProjectService {
     }
 
     async getALl() {
-        return this.ProjectModel.find({})
+        return this.ProjectModel.find({}).populate(['leader','teams'])
     }
 
     async findOne(id) {
-        return this.ProjectModel.findOne({_id: id}).populate(['leader','teams'])
+        if(mongoose.Types.ObjectId.isValid(id)){
+            // console.log('tr');
+            
+            return this.ProjectModel.findOne({_id: id}).populate(['leader','teams'])
+        
+        }
+        return []
     }
 
     async create(project: Project) {
@@ -30,8 +36,11 @@ export class ProjectService {
 
         try {
             
-            newProject.save();
-            return newProject
+            (await newProject.save()).populate(['leader','teams']);
+            let p = await this.findOne(newProject._id)
+            console.log(p);
+            
+            return p
         } catch (error) {
             throw error
         }
@@ -48,6 +57,10 @@ export class ProjectService {
     }
 
     async addEmploye(_id,id:string) {
-        return this.ProjectModel.findOneAndUpdate({_id:_id}, {$push: {teams: new mongoose.Types.ObjectId(id)}});
+        return this.ProjectModel.updateOne({_id:_id}, {$push: {teams: new mongoose.Types.ObjectId(id)}});
+    }
+
+    async getByName(name:string) {
+        return this.ProjectModel.find().or([{name: {$regex: '.*'+name+'.*',$options:'i'}}]);
     }
 }

@@ -16,7 +16,7 @@
         <i class="bi bi-plus-circle-dotted"></i>
     </div>
     <div class="img" *ngFor="let employe of listEmploye">
-        <img src="{{employe.image}}" alt="">
+        <img src="http://localhost:3000/{{employe.image}}" alt="">
         <div class="info">
             <p>Id: {{employe._id}}</p>
             <p> <span>Ten :</span> {{employe.firstname + ' '+ employe.lastname}}</p>
@@ -39,7 +39,7 @@
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let employe of searchEmploye">
                     <div class="col-1">
-                        <img src="{{employe.image}}" alt="" style="width: 100%;">
+                        <img src="http://localhost:3000/{{employe.image}}" alt="" style="width: 100%;">
                     </div>
                     <div class="">
                         <p>{{employe.lastname+' '+employe.firstname}}</p>

@@ -22,7 +22,8 @@ main{
 }
 .list-group-item i{
     font-size: 20px;
-
+    display: inline;
+    cursor: pointer;
 }
 .list-group-item.active{
     color: #7762fa;
@@ -31,4 +32,7 @@ main{
 }
 ul {
     overflow: hidden;
+}
+.a{
+    cursor: pointer;
 }

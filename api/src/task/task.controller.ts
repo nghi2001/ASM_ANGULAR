@@ -35,6 +35,18 @@ export class TaskController {
         
         return {data: employe};
     }
+    @Put("updateState")
+    async updateState(@Body() body) {
+        body.status = !body.status
+        console.log(body.status);
+        let status = body.status
+        console.log(status);
+        
+        let updateResult = await this.TaskService.updateStatus(body.id, status)
+        console.log(updateResult);
+        
+        return {updateResult,status:201}
+    }
 
     @Put(":id")
     async update(@Param("id") id, @Body() body:Task) {

@@ -15,7 +15,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { UpdateprojectComponent } from './components/updateproject/updateproject.component';
-import { TeamComponent } from './components/team/team.component'
+import { TeamComponent } from './components/team/team.component';
+import { AddEmployeComponent } from './components/add-employe/add-employe.component';
+import { EmployeComponent } from './employe/employe.component';
+import { CreateEmployeComponent } from './create-employe/create-employe.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarModule} from '@ngx-loading-bar/core'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +36,18 @@ import { TeamComponent } from './components/team/team.component'
     CreateProjectComponent,
     UpdateprojectComponent,
     TeamComponent,
+    AddEmployeComponent,
+    EmployeComponent,
+    CreateEmployeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingBarHttpClientModule,LoadingBarRouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

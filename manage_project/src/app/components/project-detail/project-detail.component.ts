@@ -33,29 +33,51 @@ export class ProjectDetailComponent implements OnInit {
      
   }
 
-  // ngOnchanges(changes: SimpleChange) {
-  //   alert(2)
-  //   console.log(changes);
-  //   if(this.project) {
-  //     this.getLeader(this.project.leader);
-  //     this.getListTask(this.project._id);
-      
-  //   }
-  // }
+  update(task:Task) {
+    
+    this.TaskService.updateState(task).subscribe((value) => {
+      console.log(value);  
+      if(value.status == 201) {
+        this.listTask = this.listTask.map(val => {
+          if(val._id === task._id) {
+            return {
+              ...task,
+              status: !task.status
+            }
+          }
+          return val
+        })
+      }    
+    },err => {
+      if(err.status = 401) {
+        localStorage.removeItem('state');
+        alert('token het han')
+      }
+    })
+  }
   getLeader(id:string) {
     this.employeService.getOneUser(id)
       .subscribe(leader => {
         this.leader = leader
+      },err => {
+        if(err.status = 401) {
+          localStorage.removeItem('state');
+          alert('token het han')
+        }
       })
   }
 
   getListTask(idProject?:any ) {
     this.TaskService.getTaskFromProject(idProject)
       .subscribe(data => {
-        console.log(data);
         
         if(data)
           this.listTask = data
+      },err => {
+        if(err.status = 401) {
+          localStorage.removeItem('state');
+          alert('token het han')
+        }
       })
   }
   getProject(idProject:string) {
@@ -69,7 +91,6 @@ export class ProjectDetailComponent implements OnInit {
   }
   
   addItem(task:any) {
-   console.log(task);
     this.listTask.push(task.newEmploye);
   }
 
@@ -79,6 +100,11 @@ export class ProjectDetailComponent implements OnInit {
       .subscribe(val => {
         if(val != null) {
           alert('success')
+        }
+      },err => {
+        if(err.status = 401) {
+          localStorage.removeItem('state');
+          alert('token het han')
         }
       })
     }

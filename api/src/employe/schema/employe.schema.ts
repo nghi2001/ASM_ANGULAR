@@ -10,7 +10,10 @@ export class Employe {
     
     @Prop()
     firstname: string;
-
+    @Prop()
+    email: string;
+    @Prop()
+    pass: string;
     @Prop()
     birthday: string;
     @Prop({default: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-25.jpg'})
